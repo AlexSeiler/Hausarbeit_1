@@ -1,9 +1,31 @@
 package pis.hue1;
 
+import java.io.*;
+import java.util.Arrays;
+
 /**
  * Created by Alex on 22.11.2017.
  */
 public class wurfel {
+    public static void main(String args[]) {
+        System.out.print(Zahlenlosung("Hallo"));
+    }
+    private static String Zahlenlosung(String losung){
+        char[] losungswort = losung.toCharArray();
+        int counter =0;
+        int[] x= new int[losung.length()];
+        for(char alphabet = 'A'; alphabet <= 'Z';alphabet++) {
+            for(int i=0;i< losung.length();i++){
+                if (alphabet == Character.toLowerCase(losungswort[i])){
+                    x[i] = counter;
+                    counter +=1;}
+                if (alphabet == Character.toUpperCase(losungswort[i])){
+                    x[i] = counter;
+                    counter +=1;}
+            }
+        }
+        return Arrays.toString(x);
+    }
     /**
      * Methode "Zahlenlosung"
      *
