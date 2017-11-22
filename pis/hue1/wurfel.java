@@ -5,17 +5,29 @@ package pis.hue1;
  */
 public class wurfel {
     /**
-     * fülle ein array mit dem Schlüsselwort und durchlaufe es mit dem Alphabet verteile dabei
-     * eine Zahl an die gewünschte stelle (evtl zwei diminsionen?) BSP:
-     * int x =0;
+     * Methode "Zahlenlosung"
+     *
+     * fülle ein array mit dem Schlüsselwort, durchlaufe es für jeden buchstaben im Alphabet, bei einem match setze
+     * den jetzigen counter an der stelle und erhöhe ihn um 1 BSP:
+     * int counter =0;
      * Wald -> ary[] = [W][a][l][d]
      * for (i=0;i< alphabet.length,i++)
      *      for (j=0;j< ary.length,j++)
      *          if alphabet[i] == ary[j] (W = W )
-     *              ary[j] = x (=0)
-     *              x+=1
+     *              ary[j] = counter (=0)
+     *              counter+=1
      *
+     *Methode "Kodieren"
      *
+     * eine schleife mit dem array ary wird durchlaufen solange es noch buchstaben eines zu kodierenden textes gibt
+     * ary sollte nun [3][0][2][1] so aussehen
+     *
+     * for (int i =0; i< textzukodieren.length;i++)
+     *      if ary position = ary.length
+     *          ary position = 0
+     *      buchstabe aus text = ary[position]add buchstabe
+     *      ary+=1
+     * ary[0].inhalt +ary[1] +ary[2] +ary[3] = kodierter text
      *
      */
 }
