@@ -8,10 +8,7 @@ import java.util.Arrays;
  * Created by Alex on 22.11.2017.
  */
 public class wurfel {
-    public static void main(String args[]) {
-        System.out.println(Kodieren("Schwarzwald","Schwenningen","eintreffendersendungverspaetetneuerterminfolgt"));
-        System.out.println(Dekodieren("Schwarzwald","Schwenningen","ndeeelmtsvtrngieedffprugnennsefiteereertoarutn"));
-    }
+
     private static String Zahlenlosung(String losung){
         int counter =0;
         int[] x= new int[losung.length()];
