@@ -9,7 +9,8 @@ import java.util.Arrays;
  */
 public class wurfel {
     public static void main(String args[]) {
-        System.out.print(Kodieren("Schwarzwald","Schwenningen","eintreffendersendungverspaetetneuerterminfolgt"));
+        System.out.println(Kodieren("Schwarzwald","Schwenningen","eintreffendersendungverspaetetneuerterminfolgt"));
+        System.out.println(Dekodieren("Schwarzwald","Schwenningen","ndeeelmtsvtrngieedffprugnennsefiteereertoarutn"));
     }
     private static String Zahlenlosung(String losung){
         int counter =0;
@@ -74,4 +75,73 @@ public class wurfel {
         }
         return zweifachwurfel;
     }
-}
+
+    private static String Dekodieren (String losung1,String losung2,String text){
+        // dekodieren muss textlänge geteilt werden durch losungswort und der rest
+        //auf die ersten losungswort buchstaben verteilt werden.
+        String umstand1 = Zahlenlosung(losung1);
+        String umstand2 = Zahlenlosung(losung2);
+        String[] schluessel2 = umstand1.substring(1,umstand1.length()-1).split(", ");
+        String[] schluessel1= umstand2.substring(1,umstand2.length()-1).split(", ");
+        String[] dekodiert1=new String [schluessel1.length];
+        String[] dekodiert2=new String [schluessel2.length];
+        String einfachwurfel="";
+        String zweifachwurfel="";
+        int rest2 = text.length() % losung1.length();
+        int rest1= text.length()%losung2.length();
+        int counter2 = ((text.length()-rest1)/losung1.length());
+        int counter1 =((text.length()-rest2)/losung2.length());
+        int j=-1;
+        int k=counter1;
+
+        for(int x=0;x<schluessel1.length;x++){
+            dekodiert1[Integer.parseInt(schluessel1[x])]="";
+        }
+        for(int x=0;x<schluessel2.length;x++){
+            dekodiert2[Integer.parseInt(schluessel2[x])]="";
+        }
+        for(int i=0;i<text.length();i++){
+            if (k==counter1){
+                k=0;
+                j+=1;
+                for(int n=0;n<rest1;n++) {
+                    if (Integer.parseInt(schluessel1[n]) == j) {
+                        k -= 1;
+                    }
+                }
+            }
+            dekodiert1[Integer.parseInt(schluessel1[j])]+=text.charAt(i);
+            k+=1;
+
+        }
+        for(int q=0;q<counter1;q++){
+            for(int i=0;i<dekodiert1.length;i++) {
+                einfachwurfel += dekodiert1[Integer.parseInt(schluessel1[i])].charAt(q);
+            }
+        }
+        j=-1;
+        k=counter2;
+        for(int i=0;i<einfachwurfel.length();i++){
+            if (k==counter2){
+                k=0;
+                j+=1;
+                for(int n=0;n<rest2;n++) {
+                    if (Integer.parseInt(schluessel2[n]) == j) {
+                        k -= 1;
+                    }
+                }
+            }
+            dekodiert2[Integer.parseInt(schluessel2[j])]+=einfachwurfel.charAt(i);
+            k+=1;
+        }
+        for(int w=0;w<counter2;w++){
+            for(int i=0;i<dekodiert2.length;i++) {
+                zweifachwurfel+=dekodiert2[i].charAt(w);
+            }
+        }
+        return zweifachwurfel;
+        }
+
+
+    }
+
