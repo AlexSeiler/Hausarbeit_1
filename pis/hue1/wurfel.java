@@ -89,8 +89,8 @@ public class wurfel {
         String zweifachwurfel="";
         int rest2 = text.length() % losung1.length();
         int rest1= text.length()%losung2.length();
-        int counter2 = ((text.length()-rest1)/losung1.length());
-        int counter1 =((text.length()-rest2)/losung2.length());
+        int counter2 = ((text.length()-rest2)/losung1.length());
+        int counter1 =((text.length()-rest1)/losung2.length());
         int j=-1;
         int k=counter1;
 
@@ -104,19 +104,25 @@ public class wurfel {
             if (k==counter1){
                 k=0;
                 j+=1;
+
                 for(int n=0;n<rest1;n++) {
                     if (Integer.parseInt(schluessel1[n]) == j) {
                         k -= 1;
                     }
                 }
             }
-            dekodiert1[Integer.parseInt(schluessel1[j])]+=text.charAt(i);
+            dekodiert1[j]+=text.charAt(i);
             k+=1;
 
         }
         for(int q=0;q<counter1;q++){
             for(int i=0;i<dekodiert1.length;i++) {
                 einfachwurfel += dekodiert1[Integer.parseInt(schluessel1[i])].charAt(q);
+            }
+        }
+        if(rest1!=0){
+            for(int i=0;i<rest1;i++){
+                einfachwurfel+= dekodiert1[Integer.parseInt(schluessel1[i])].charAt(counter1);
             }
         }
         j=-1;
@@ -131,12 +137,17 @@ public class wurfel {
                     }
                 }
             }
-            dekodiert2[Integer.parseInt(schluessel2[j])]+=einfachwurfel.charAt(i);
+            dekodiert2[j]+=einfachwurfel.charAt(i);
             k+=1;
         }
-        for(int w=0;w<counter2;w++){
+        for(int q=0;q<counter2;q++){
             for(int i=0;i<dekodiert2.length;i++) {
-                zweifachwurfel+=dekodiert2[i].charAt(w);
+               zweifachwurfel += dekodiert2[Integer.parseInt(schluessel2[i])].charAt(q);
+            }
+        }
+        if(rest2!=0){
+            for(int i=0;i<rest2;i++){
+                zweifachwurfel+= dekodiert2[Integer.parseInt(schluessel2[i])].charAt(counter2);
             }
         }
         return zweifachwurfel;
